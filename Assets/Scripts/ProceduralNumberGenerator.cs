@@ -7,6 +7,7 @@ public class ProceduralNumberGenerator {
 
 	public static int GetNextNumber() {
 		string currentNum = key.Substring(currentPosition++ % key.Length, 1);
-		return int.Parse (currentNum);
+//		return int.Parse (currentNum);
+	    return Random.Range(1, 5);
 	}
 }
