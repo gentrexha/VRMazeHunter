@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class VRAutoWalk : MonoBehaviour {
 
-    public float movSpeed = 3f;
+    public float movSpeed = 3.0f;
+//    public float rotateSpeed = 1.5f;
     public bool moveForward;
     private CharacterController _charController;
     private Transform _playerTransform;
@@ -43,7 +44,6 @@ public class VRAutoWalk : MonoBehaviour {
                 btnTimePressed = 0;
                 lastInputEvent = InputEvent.OneShortPress;
                 InputEvent_CooldownTimer = 30;
-                moveForward = !moveForward;
             }
             else if (btnTimePressed >= 10 && btnTimePressed <= 40) {
                 if (btnNumberOfPresses < 1) {
@@ -60,11 +60,14 @@ public class VRAutoWalk : MonoBehaviour {
                 //Trigger LongHeldEvent Here
                 lastInputEvent = InputEvent.LongHeldPress;
                 InputEvent_CooldownTimer = 30;
+                moveForward = !moveForward;
             }
         }
         if (moveForward) {
             Vector3 forward = _playerTransform.TransformDirection(Vector3.forward);
             _charController.SimpleMove(forward * movSpeed);
         }
+
+//	    transform.eulerAngles = new Vector3(transform.localEulerAngles.x,_playerTransform.localEulerAngles.y * rotateSpeed,transform.localEulerAngles.z);
     }
 }
