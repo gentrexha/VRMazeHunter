@@ -9,5 +9,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/StartMenu.unity
     guid: 26719529ed77ba64a8fc6afddb2cc7b6
   - enabled: 1
-    path: Assets/_Scenes/Sandbox.unity
-    guid: 03ace6102d521654d82119a05e91f81e
+    path: Assets/_Scenes/LevelEasy.unity
+    guid: 1022be8814e78a243b1ac017f88de559
+  - enabled: 1
+    path: Assets/_Scenes/LevelHard.unity
+    guid: f51fc8b7763e1ec4eb8bdf50746367ba
+  - enabled: 1
+    path: Assets/_Scenes/LevelMedium.unity
+    guid: 2940345aa059dbd42bc08e803583ea3f

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Minimap : MonoBehaviour {
 
     private Transform _playerTransform;
+    public Transform _iconTransform;
 
     private void Start() {
         _playerTransform = Camera.main.transform;
@@ -15,5 +16,6 @@ public class Minimap : MonoBehaviour {
         newPos.y = _playerTransform.position.y;
         transform.position = newPos;
         transform.eulerAngles = new Vector3(transform.localEulerAngles.x, _playerTransform.localEulerAngles.y, transform.localEulerAngles.z);
+        _iconTransform.eulerAngles = new Vector3(transform.localEulerAngles.x, _playerTransform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 }
