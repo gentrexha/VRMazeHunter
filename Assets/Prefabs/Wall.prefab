@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3347050}
   - component: {fileID: 6508562}
   - component: {fileID: 2342344}
-  - component: {fileID: 208784236736628104}
   m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
@@ -47,7 +46,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: -1362528329, guid: 2d61727e85b0a424faa0bfdaf2521ae5, type: 3}
+  - {fileID: 2100000, guid: 386446aed61f3414c93916c9d70aae39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,18 +182,3 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!208 &208784236736628104
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
