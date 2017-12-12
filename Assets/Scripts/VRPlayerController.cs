@@ -20,6 +20,13 @@ public class VRPlayerController : MonoBehaviour {
     public GameObject loadingArrow;
     public bool allowMovement;
     public GameObject endGameMenu;
+    // Gun
+    public float damage = 10f;
+    public float range = 100f;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
+    public float impactForce = 30f;
+    public float fireRate = 15f;
 
     private CharacterController _charController;
     private Transform _playerTransform;
@@ -32,6 +39,8 @@ public class VRPlayerController : MonoBehaviour {
     private bool _finished = false;
     private string _currentSceneName;
     private float _fillAmount;
+    // Gun
+    private float _nextTimeToFire = 0f;
 
 
     public enum InputEvent { OneShortPress, DoublePress, LongHeldPress, Idle }
@@ -72,7 +81,7 @@ public class VRPlayerController : MonoBehaviour {
 	        if (btnTimePressed == -1f) loadingArrow.SetActive(false);
 	    }
 	    if (Input.GetButtonUp("Fire1") && InputEvent_CooldownTimer >= 0)
-	        if (btnTimePressed < 15 && btnNumberOfPresses < 2) {
+	        if (btnTimePressed < 40 && btnNumberOfPresses < 2) {
 	            // Trigger OneQuickPress Event Here
 	            btnTimePressed = 0;
 	            lastInputEvent = InputEvent.OneShortPress;
@@ -80,7 +89,11 @@ public class VRPlayerController : MonoBehaviour {
 	            btnTimePressed = -1;
 	            loadingArrow.SetActive(false);
 	            // Shot event and animations here!
-	        }
+	            if (Time.time >= _nextTimeToFire) {
+	                _nextTimeToFire = Time.time + 1f / fireRate;
+                    Shoot();
+                }
+            }
 	        // Disabled double press for now
 	        //            else if (btnTimePressed >= 15 && btnTimePressed <= 40) {
 	        //                if (btnNumberOfPresses < 1) {
@@ -165,5 +178,21 @@ public class VRPlayerController : MonoBehaviour {
 
     public void DeleteHighscore() {
         PlayerPrefs.DeleteKey("Highscore"+_currentSceneName);
+    }
+
+    void Shoot() {
+        muzzleFlash.Play();
+        RaycastHit hitInfo;
+        if (Physics.Raycast(_playerTransform.transform.position, _playerTransform.transform.forward, out hitInfo, range)) {
+            EnemyController _enemy = hitInfo.transform.GetComponent<EnemyController>();
+            if (_enemy != null) {
+                _enemy.TakeDamage(damage);
+            }
+            if (hitInfo.rigidbody != null) {
+                hitInfo.rigidbody.AddForce(-hitInfo.normal * impactForce);
+            }
+            GameObject impactGameObject = Instantiate(impactEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            Destroy(impactGameObject,2f);
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
@@ -8,6 +6,18 @@ public class EnemyController : MonoBehaviour {
     public float lookRadius = 10f;
     private Transform target;
     private NavMeshAgent agent;
+    public float health = 50f;
+
+    public void TakeDamage(float amount) {
+        health -= amount;
+        if (health <= 0f) {
+            Die();
+        }
+    }
+
+    void Die() {
+        Destroy(gameObject);
+    }
 
 	void Start () {
 	    target = PlayerManager.instance.player.transform;
