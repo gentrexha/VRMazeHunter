@@ -73,7 +73,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1093676564089202
 GameObject:
   m_ObjectHideFlags: 1
@@ -275,6 +275,8 @@ GameObject:
   - component: {fileID: 223290656843922332}
   - component: {fileID: 114340126295681926}
   - component: {fileID: 114258119109679528}
+  - component: {fileID: 114315814216818556}
+  - component: {fileID: 114211303290929894}
   m_Layer: 0
   m_Name: BottomUICanvas
   m_TagString: Untagged
@@ -346,6 +348,7 @@ GameObject:
   - component: {fileID: 114548624771044710}
   - component: {fileID: 114264358736475336}
   - component: {fileID: 114299911601519332}
+  - component: {fileID: 114492270769870184}
   m_Layer: 0
   m_Name: PlayerUICanvas
   m_TagString: Untagged
@@ -552,7 +555,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725748550547662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4}
+  m_LocalPosition: {x: 0, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814982728211518}
@@ -1336,7 +1339,24 @@ MonoBehaviour:
     type: 2}
   impactForce: 30
   fireRate: 15
+  hasWeapon: 0
+  gun: {fileID: 1075271581436340}
   lastInputEvent: 3
+--- !u!114 &114211303290929894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511140586655732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycasterEventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxRaycastHits: 64
 --- !u!114 &114219326917616130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1650,6 +1670,22 @@ MonoBehaviour:
   blockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114315814216818556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511140586655732}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739800cd36aba44e9b04ce977e5784bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
+  blockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &114340126295681926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1683,7 +1719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 0.04705883, g: 0.2627451, b: 0.47450984, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1710,6 +1746,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &114492270769870184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589156574241252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycasterEventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxRaycastHits: 64
 --- !u!114 &114548624771044710
 MonoBehaviour:
   m_ObjectHideFlags: 1

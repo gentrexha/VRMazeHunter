@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33080549427985358}
   - component: {fileID: 64564085204125902}
   - component: {fileID: 23754837503076770}
-  - component: {fileID: 208378287478412508}
   m_Layer: 10
   m_Name: EasyFloor
   m_TagString: Untagged
@@ -98,18 +97,3 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!208 &208378287478412508
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1548677889202624}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 5, y: 0.00001, z: 5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5

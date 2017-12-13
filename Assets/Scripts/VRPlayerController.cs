@@ -27,6 +27,8 @@ public class VRPlayerController : MonoBehaviour {
     public GameObject impactEffect;
     public float impactForce = 30f;
     public float fireRate = 15f;
+    public bool hasWeapon = false;
+    public GameObject gun;
 
     private CharacterController _charController;
     private Transform _playerTransform;
@@ -61,6 +63,12 @@ public class VRPlayerController : MonoBehaviour {
     }
 	
 	void Update () {
+//        Gun Management
+	    if (hasWeapon) {
+	        gun.SetActive(true);
+	    } else if (!hasWeapon) {
+	        gun.SetActive(false);
+	    }
 //        BottomCavnas rotation
 	    bottomCanvas.transform.eulerAngles = new Vector3(90f,_playerTransform.transform.eulerAngles.y,0f);
 //        Footprints Management
@@ -88,12 +96,14 @@ public class VRPlayerController : MonoBehaviour {
 	            InputEvent_CooldownTimer = 30;
 	            btnTimePressed = -1;
 	            loadingArrow.SetActive(false);
-	            // Shot event and animations here!
-	            if (Time.time >= _nextTimeToFire) {
-	                _nextTimeToFire = Time.time + 1f / fireRate;
-                    Shoot();
-                }
-            }
+	            // Shot event
+	            if (hasWeapon) {
+	                if (Time.time >= _nextTimeToFire) {
+	                    _nextTimeToFire = Time.time + 1f / fireRate;
+	                    Shoot();
+	                }
+	            }
+	        }
 	        // Disabled double press for now
 	        //            else if (btnTimePressed >= 15 && btnTimePressed <= 40) {
 	        //                if (btnNumberOfPresses < 1) {

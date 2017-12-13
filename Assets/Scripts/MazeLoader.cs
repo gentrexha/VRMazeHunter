@@ -1,26 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.AI;
 
 public class MazeLoader : MonoBehaviour {
+    // Public
 	public int mazeRows, mazeColumns;
 	public GameObject wall;
 	public float size = 2f;
+    public GameObject parentGO;
+    public GameObject enemiesGO;
+    // Private
+    private MazeCell[,] mazeCells;
 
-	private MazeCell[,] mazeCells;
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		InitializeMaze ();
 
 		MazeAlgorithm ma = new HuntAndKillMazeAlgorithm (mazeCells);
 		ma.CreateMaze ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    }
 
-	private void InitializeMaze() {
+    void BuildNavigation() {
+        parentGO.transform.GetComponent<NavMeshSurface>().BuildNavMesh();
+        enemiesGO.SetActive(true);
+    }
+
+    private void InitializeMaze() {
 
 		mazeCells = new MazeCell[mazeRows,mazeColumns];
 
@@ -29,25 +33,25 @@ public class MazeLoader : MonoBehaviour {
 				mazeCells [r, c] = new MazeCell ();
 
 				// For now, use the same wall object for the floor!
-				mazeCells [r, c] .floor = Instantiate (wall, new Vector3 (r*size, -(size/2f), c*size), Quaternion.identity) as GameObject;
-				mazeCells [r, c] .floor.name = "Floor " + r + "," + c;
-				mazeCells [r, c] .floor.transform.Rotate (Vector3.right, 90f);
+//				mazeCells [r, c] .floor = Instantiate (wall, new Vector3 (r*size, -(size/2f), c*size), Quaternion.identity, levelFloor.transform) as GameObject;
+//				mazeCells [r, c] .floor.name = "Floor " + r + "," + c;
+//				mazeCells [r, c] .floor.transform.Rotate (Vector3.right, 90f);
 
 				if (c == 0) {
-					mazeCells[r,c].westWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) - (size/2f)), Quaternion.identity) as GameObject;
+					mazeCells[r,c].westWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) - (size/2f)), Quaternion.identity, parentGO.transform) as GameObject;
 					mazeCells [r, c].westWall.name = "West Wall " + r + "," + c;
 				}
 
-				mazeCells [r, c].eastWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) + (size/2f)), Quaternion.identity) as GameObject;
+				mazeCells [r, c].eastWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) + (size/2f)), Quaternion.identity, parentGO.transform) as GameObject;
 				mazeCells [r, c].eastWall.name = "East Wall " + r + "," + c;
 
 				if (r == 0) {
-					mazeCells [r, c].northWall = Instantiate (wall, new Vector3 ((r*size) - (size/2f), 0, c*size), Quaternion.identity) as GameObject;
+					mazeCells [r, c].northWall = Instantiate (wall, new Vector3 ((r*size) - (size/2f), 0, c*size), Quaternion.identity, parentGO.transform) as GameObject;
 					mazeCells [r, c].northWall.name = "North Wall " + r + "," + c;
 					mazeCells [r, c].northWall.transform.Rotate (Vector3.up * 90f);
 				}
 
-				mazeCells[r,c].southWall = Instantiate (wall, new Vector3 ((r*size) + (size/2f), 0, c*size), Quaternion.identity) as GameObject;
+				mazeCells[r,c].southWall = Instantiate (wall, new Vector3 ((r*size) + (size/2f), 0, c*size), Quaternion.identity, parentGO.transform) as GameObject;
 				mazeCells [r, c].southWall.name = "South Wall " + r + "," + c;
 				mazeCells [r, c].southWall.transform.Rotate (Vector3.up * 90f);
 			}

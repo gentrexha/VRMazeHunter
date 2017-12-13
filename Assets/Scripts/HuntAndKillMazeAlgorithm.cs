@@ -22,6 +22,9 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 			Kill(); // Will run until it hits a dead end.
 			Hunt(); // Finds the next unvisited cell with an adjacent visited cell. If it can't find any, it sets courseComplete to true.
 		}
+	    if (courseComplete) {
+
+        }
 	}
 
 	private void Kill() {
