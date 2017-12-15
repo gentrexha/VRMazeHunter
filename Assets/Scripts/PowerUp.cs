@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.Scripts;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour {
@@ -15,7 +16,7 @@ public class PowerUp : MonoBehaviour {
 
     IEnumerator PickUp(Collider player) {
         Instantiate(pickupEffect, transform.position, transform.rotation);
-        VRPlayerController playerController = player.GetComponent<VRPlayerController>();
+        VrPlayerController playerController = player.GetComponent<VrPlayerController>();
         playerController.movSpeed += movSpeedBonus;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;

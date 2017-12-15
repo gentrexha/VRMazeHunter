@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 10f;
     private Transform target;
-    private NavMeshAgent agent;
+    private NavMeshAgent _navMeshAgent;
+    private Animator _animator;
+    private AudioSource _audioSource;
     public float health = 50f;
 
     public void TakeDamage(float amount) {
@@ -16,23 +22,28 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Die() {
-        Destroy(gameObject);
+        _animator.SetBool("IsDead",true);
+        _navMeshAgent.isStopped = true;
+        Destroy(gameObject,2f);
     }
 
 	void Start () {
 	    target = PlayerManager.instance.player.transform;
-	    agent = GetComponent<NavMeshAgent>();
+	    _navMeshAgent = GetComponent<NavMeshAgent>();
+	    _animator = GetComponent<Animator>();
+	    _audioSource = GetComponent<AudioSource>();
 	}
 	
 	void Update () {
-	    float distance = Vector3.Distance(target.position, transform.position);
+	    _animator.SetFloat("Velocity", _navMeshAgent.velocity.magnitude);
+        float distance = Vector3.Distance(target.position, transform.position);
 	    if (distance <= lookRadius) {
-	        agent.SetDestination(target.position);
-	        if (distance <= agent.stoppingDistance) {
-	            // Attack the target
+	        _navMeshAgent.SetDestination(target.position);
+	        if (distance <= _navMeshAgent.stoppingDistance) {
                 FaceTarget();
+	            // Attack the target
 	        }
-	    }
+        }
 	}
 
     void FaceTarget() {
