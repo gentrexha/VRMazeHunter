@@ -519,6 +519,13 @@ MonoBehaviour:
     type: 3}
   CloseRangeAudioClip: {fileID: 8300000, guid: 5ed727f0b44342a4883e4a6b67535104, type: 3}
   LongRangeAudioClip: {fileID: 8300000, guid: 67fef53d6130fa344883879a03104f3e, type: 3}
+  enemiesGO: {fileID: 189871795}
+  enemy: {fileID: 1468035889137188, guid: 9c6188c279205fe448aaa55afca61429, type: 2}
+  powerUpGO: {fileID: 1121955988}
+  powerUp: {fileID: 1880128439806318, guid: 76f9496389b66b34fab0e3f027a297ee, type: 2}
+  numPowerUps: 3
+  numEnemies: 3
+  mazeLoader: {fileID: 0}
 --- !u!1001 &1089469994
 Prefab:
   m_ObjectHideFlags: 0
@@ -591,6 +598,34 @@ GameObject:
   m_PrefabParentObject: {fileID: 1725748550547662, guid: f8ba001379e58a447a316bf587970168,
     type: 2}
   m_PrefabInternal: {fileID: 1089469994}
+--- !u!1 &1121955988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1121955989}
+  m_Layer: 0
+  m_Name: PowerUps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121955989
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121955988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1272447304
 GameObject:
   m_ObjectHideFlags: 0

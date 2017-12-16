@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -13,6 +14,12 @@ public class EnemyController : MonoBehaviour {
     private Animator _animator;
     private AudioSource _audioSource;
     public float health = 50f;
+    private VrPlayerController _playerStats;
+    public float slowAmount = 1.5f;
+    private float normalSpeed;
+    public bool isAlive;
+    public bool isSlowingTarget;
+
 
     public void TakeDamage(float amount) {
         health -= amount;
@@ -22,27 +29,41 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Die() {
+        isAlive = false;
+        _playerStats.movSpeed = normalSpeed;
         _animator.SetBool("IsDead",true);
         _navMeshAgent.isStopped = true;
         Destroy(gameObject,2f);
     }
 
-	void Start () {
+    void Start () {
 	    target = PlayerManager.instance.player.transform;
 	    _navMeshAgent = GetComponent<NavMeshAgent>();
 	    _animator = GetComponent<Animator>();
 	    _audioSource = GetComponent<AudioSource>();
-	}
+	    _playerStats = target.GetComponent<VrPlayerController>();
+	    normalSpeed = _playerStats.movSpeed;
+        isAlive = true;
+        isSlowingTarget = false;
+    }
 	
 	void Update () {
 	    _animator.SetFloat("Velocity", _navMeshAgent.velocity.magnitude);
         float distance = Vector3.Distance(target.position, transform.position);
 	    if (distance <= lookRadius) {
 	        _navMeshAgent.SetDestination(target.position);
-	        if (distance <= _navMeshAgent.stoppingDistance) {
+	        if (distance <= _navMeshAgent.stoppingDistance && isAlive) {
                 FaceTarget();
-	            // Attack the target
-	        }
+	            if (!isSlowingTarget) {
+	                _playerStats.movSpeed -= slowAmount;
+	                isSlowingTarget = true;
+	            }
+            } else if (distance > _navMeshAgent.stoppingDistance && isAlive) {
+	            if (isSlowingTarget) {
+	                _playerStats.movSpeed += slowAmount;
+	                isSlowingTarget = false;
+	            }
+            }
         }
 	}
 

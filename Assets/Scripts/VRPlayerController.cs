@@ -27,6 +27,7 @@ namespace Assets.Scripts {
         public GameObject impactEffect;
         private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);    // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible
         public AudioSource gunAudio;                                       // Reference to the audio source which will play our shooting sound effect
+        public AudioSource explosionAudio;                                       // Reference to the audio source which will play our shooting sound effect
         private LineRenderer laserLine;                                     // Reference to the LineRenderer component which will display our laserline
         public Transform lineRenderTransform;
 
@@ -196,6 +197,7 @@ namespace Assets.Scripts {
 //                  if (hitInfo.rigidbody != null) {
 //                  hitInfo.rigidbody.AddForce(-hitInfo.normal * impactForce);
 //              }
+                explosionAudio.Play();
                 var impactGameObject = Instantiate(impactEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 Destroy(impactGameObject,2f);
             }
