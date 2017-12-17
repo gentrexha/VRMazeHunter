@@ -299,6 +299,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 224484705552170384, guid: f8ba001379e58a447a316bf587970168,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 108
+      objectReference: {fileID: 0}
     - target: {fileID: 114284769669815384, guid: f8ba001379e58a447a316bf587970168,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -308,11 +313,6 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224484705552170384, guid: f8ba001379e58a447a316bf587970168,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 224046664898179100, guid: f8ba001379e58a447a316bf587970168,
         type: 2}

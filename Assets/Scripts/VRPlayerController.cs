@@ -152,12 +152,18 @@ namespace Assets.Scripts {
             _finished = true;
             winText.SetActive(true);
             StoreTime(timerText.text);
-            // Ask user if he want's to restart or go back
+            StartCoroutine(LoadLevel(0, 2f));
         }
 
         private IEnumerator Restart() {
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene("");
+        }
+
+        IEnumerator LoadLevel(int _index, float _delay)
+        {
+            yield return new WaitForSeconds(_delay);
+            SceneManager.LoadScene(_index);
         }
 
         public void StoreTime(string timeVal)

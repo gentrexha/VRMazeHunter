@@ -343,7 +343,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725748550547662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4}
+  m_LocalPosition: {x: 0, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814982728211518}
@@ -889,8 +889,7 @@ MonoBehaviour:
   range: 100
   impactForce: 30
   fireRate: 15
-  impactEffect: {fileID: 1744497535683784, guid: c7483954a72ab924b9687117e6936b92,
-    type: 2}
+  impactEffect: {fileID: 100008, guid: 807ff903e8ec748fe882790f84d4492f, type: 2}
   gunAudio: {fileID: 82028194695583954}
   explosionAudio: {fileID: 82566182621439124}
   lineRenderTransform: {fileID: 4673156293364754}

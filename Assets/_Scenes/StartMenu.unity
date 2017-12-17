@@ -1069,8 +1069,7 @@ MonoBehaviour:
   range: 100
   impactForce: 30
   fireRate: 15
-  impactEffect: {fileID: 1744497535683784, guid: c7483954a72ab924b9687117e6936b92,
-    type: 2}
+  impactEffect: {fileID: 100008, guid: 807ff903e8ec748fe882790f84d4492f, type: 2}
   gunAudio: {fileID: 627898222}
   explosionAudio: {fileID: 1648769520}
   lineRenderTransform: {fileID: 627898220}
